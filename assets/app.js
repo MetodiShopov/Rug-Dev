@@ -570,15 +570,39 @@ document.addEventListener('DOMContentLoaded', function () {
         if (prd_preview_img !== null && prd_preview_img !== "") { item_imageUrl = prd_preview_img; } 
 
         if (item_imageUrl !== null && item_imageUrl !== "") {
+          // // Reproducing to next code to get the url of the img selected to be printed on the custom rug
+          // let prevTag = "";
+          // if(item_imageUrl == prd_preview_img) {
+          //   if (item.properties) {
+          //     let imgUrlExist = 0;
+          //     $.each(item.properties, (title, value) => {
+          //       if (value && value !== 'on') {
+          //         const isHiddenProperty = title.substring(0, 2) === "__";
+          //         if (!isHiddenProperty) {
+          //           if (value.includes('https') && imgUrlExist == 0) {
+          //             item_imageUrl = value;
+          //           } else if (value.includes('https') && imgUrlExist == 1) {
+          //             prevTag = `<a class="pplr_slide" href="${value}">PREVIEW</a>`
+          //           }
+          //           imgUrlExist++
+          //         }
+          //       }
+          //     });
+          //   }
+          // }
+
           let encodedTitle = htmlEncode(item.title);
           cartItemsHTML += `<div class="cart_image"><img src="${item_imageUrl}" alt="${encodedTitle}" /></div></a>`;
+    
+          // cartItemsHTML += `<div class="cart_image"><img src="${item_imageUrl}" alt="${encodedTitle}" />${prevTag !== "" ? prevTag : ''}</div></a>`;
         }
 
         // console.log({props:item.properties,prd_preview_img, item_imageUrl});
         
         
         let item_size = item.options_with_values.find(i => i.name.includes('Size'))?.value || '';
-        let item_title = `<span><strong>${ item.product_title}</strong></span> </br><strong>Size:</strong> ${item_size}`;
+        let item_shape = item.options_with_values.find(i => i.name.includes('Shape'))?.value || '';
+        let item_title = `<span><strong>${ item.product_title}</strong></span> </br><strong>Size:</strong> ${item_size} </br><strong>Shape:</strong> ${item_shape}`;
 
         cartItemsHTML += `<div class="mini-cart__item-content"><div class="mini-cart__item-title"><a class="mini-cart__item-title__text" href="${item.url}">${item_title}</a>`;
         if (item.selling_plan_allocation) {
@@ -720,6 +744,12 @@ document.addEventListener('DOMContentLoaded', function () {
     $('.js-cart_subtotal').html(cartActionHTML);
     $('.js-cart_savings').html(cartSavingsHTML);
 
+    // Mirror per-line price into the checkout button
+    mirrorPplrPriceToButton();
+
+  // Initialize any dynamic pplr slide anchors after the cart HTML is updated
+  initPplrSlides();
+
     is_qty_greater_than_two_than_disc_text()
     // dis_apply_btn()
 
@@ -736,6 +766,71 @@ document.addEventListener('DOMContentLoaded', function () {
 
   }
 
+  // Copies the first found .money.a_pplr_item_line_price content into the checkout button span
+  function mirrorPplrPriceToButton() {
+    try {
+      const $buttonPrice = $('.mimic-praice');
+      if (!$buttonPrice.length) return;
+
+      // Primary source: cart subtotal .money that is not a was_price
+      const $subtotalMoney = $('.js-cart_subtotal .money').not('.was_price').first();
+      if ($subtotalMoney.length) {
+        $buttonPrice.html($subtotalMoney.html());
+        return;
+      }
+
+      // Fallback: any per-line pplr item line price
+      const $source = $('.money.a_pplr_item_line_price').first();
+      if ($source.length) {
+        $buttonPrice.html($source.html());
+      } else {
+        $buttonPrice.html('');
+      }
+    } catch (e) {
+      // silent
+    }
+  }
+
+  // Observe changes to cart items and subtotal so button updates live when quantities change
+  (function observeCartChanges() {
+    const selectors = ['.js-cart_items', '.js-cart_subtotal'];
+    const observer = new MutationObserver(mutations => {
+      // Directly call mirror unconditionally on mutation to keep sync (cheap operation)
+      mirrorPplrPriceToButton();
+    });
+
+    selectors.forEach(sel => {
+      const el = document.querySelector(sel);
+      if (el) {
+        observer.observe(el, { childList: true, subtree: true, characterData: true });
+      }
+    });
+    // As a safety fallback, also listen to input change events on quantity inputs to trigger update
+    document.addEventListener('input', e => {
+      if (e.target && e.target.classList && e.target.classList.contains('quantity')) {
+        mirrorPplrPriceToButton();
+      }
+    }, { passive: true });
+  })();
+
+  // Initialize pplr preview anchors inside the mini cart so they have correct labels and behavior
+  function initPplrSlides() {
+    try {
+      const anchors = document.querySelectorAll('.cart_content .mini-cart__item-properties .pplr_slide');
+      anchors.forEach((anchor, index) => {
+        // label first anchor 'Original image', subsequent anchors 'Preview image'
+        anchor.textContent = index === 0 ? 'Orignal image' : (anchor.textContent.trim() || 'Preview image');
+        // ensure links open in a new tab if they are external images
+        if (anchor.getAttribute('href') && anchor.getAttribute('href').startsWith('http')) {
+          anchor.setAttribute('target', '_blank');
+          anchor.setAttribute('rel', 'noopener noreferrer');
+        }
+      });
+    } catch (e) {
+      // silent
+    }
+  }
+
 // ======= cart refresh function ========
   let cartRefreshWork = true;
 
@@ -748,10 +843,7 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
   const CTM_Cart_refresh = () => {  
-    console.log("cart refresh retun", !cartRefreshWork);
-
     if (!cartRefreshWork) return;
-    console.log('CTM_Cart_refresh', cartRefreshWork);
 
     document.body?.classList.add('side_cart_active');
     $.ajax({
@@ -956,7 +1048,6 @@ document.addEventListener('DOMContentLoaded', function () {
       const $addToCartForm = $(this).closest('form');
       const $addToCartBtn = $addToCartForm.find('.add_to_cart');
       this.recipientForm = $addToCartForm[0].querySelector('[data-recipient-form]');
-      $('.warning').remove();
       if (this.recipientForm) {
         this.recipientForm.classList.remove('recipient-form--has-errors');
       }
@@ -964,24 +1055,30 @@ document.addEventListener('DOMContentLoaded', function () {
       // Refresh page on quick shop add to cart if on cart page
       if ($('body').hasClass('cart')) {
         $addToCartForm.submit();
+        return false;
       }
+
+      const postData = $addToCartForm.serialize();
+
       $.ajax({
         url: '/cart/add.js',
         dataType: 'json',
         cache: false,
         type: 'post',
-        data: $addToCartForm.serialize(),
+        data: postData,
         beforeSend() {
           $addToCartBtn.attr('disabled', 'disabled').addClass('disabled');
           $addToCartBtn.find('span').removeClass('fadeInDown').addClass('animated zoomOut');
         },
-        success() {
+        success(response) {
           $addToCartBtn.find('.checkmark').addClass('checkmark-active');
           window.setTimeout(() => {
             $addToCartBtn.removeAttr('disabled').removeClass('disabled');
             $addToCartBtn.find('.checkmark').removeClass('checkmark-active');
             $addToCartBtn.find('span').removeClass('zoomOut').addClass('fadeInDown');
           }, 1000);
+
+          // fetch updated cart
           $.ajax({
             url: '/cart.js',
             dataType: 'json',
@@ -1020,18 +1117,18 @@ document.addEventListener('DOMContentLoaded', function () {
                   }
                 }
               }, 500);
+            },
+            error() {
+              // silent
             }
           });
         },
         error: XMLHttpRequest => {
-          const response = eval(`(${XMLHttpRequest.responseText})`);
-          $('.warning').remove();
-          let warning;
-          if (response.errors && response.errors.email) {
+          const response = (() => { try { return JSON.parse(XMLHttpRequest.responseText); } catch (e) { return null; } })();
+          if (response && response.errors && response.errors.email) {
             this.recipientForm.classList.add('recipient-form--has-errors');
           } else {
-            warning = `<p class="warning animated bounceIn">${response.description.replace('All 1 ', 'All ')}</p>`;
-            $addToCartForm.after(warning);
+            // do not inject warning elements here; keep behavior silent and restore button state
           }
           $addToCartBtn.removeAttr('disabled').removeClass('disabled');
           $addToCartBtn.find('span').text(window.PXUTheme.translation.add_to_cart).removeClass('zoomOut').addClass('zoomIn');
