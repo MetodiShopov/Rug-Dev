@@ -466,6 +466,78 @@
               <div class="custom_img_item">
                 <img src="{{ block.settings.image_item |  img_url: 'master' }}" height="" width="" alt="">
               </div>
+            {% when 'Four_images_with_text' %}
+            <style>
+              .icon_with_text_wrapper {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 16px;
+                padding: 16px 0;
+                margin-top: 24px;
+              }
+            
+              .icon_with_text_block {
+                display: flex;
+                align-items: center;
+                gap: 16px;
+                width: 48%;
+              }
+            
+              .icon_blk_text p {
+                margin: unset;
+                font-size: 14px;
+              }
+            
+              .icon_blk_img {
+                height: 32px;
+              }
+              .icon_blk_img img {
+                width: 32px;
+                height: 32px;
+              }
+            </style>
+            <div class="icon_with_text_wrapper">
+              <div class="icon_with_text_block">
+                <div class="icon_blk_img">
+                  {% if block.settings.Four_images_with_text_img_one != blank %}
+                  {{ block.settings.Four_images_with_text_img_one | image_url: width: 500 | image_tag: class: 'icon_img' }}
+                  {% else %}
+                  {{ 'collection-2' | placeholder_svg_tag }}
+                  {% endif %}
+                </div>
+                <div class="icon_blk_text">{{ block.settings.Four_images_with_text_text_one }}</div>
+              </div>
+              <div class="icon_with_text_block">
+                <div class="icon_blk_img">
+                  {% if block.settings.Four_images_with_text_img_two != blank %}
+                  {{ block.settings.Four_images_with_text_img_two | image_url: width: 500 | image_tag: class: 'icon_img' }}
+                  {% else %}
+                  {{ 'collection-1' | placeholder_svg_tag }}
+                  {% endif %}
+                </div>
+                <div class="icon_blk_text">{{ block.settings.Four_images_with_text_text_two }}</div>
+              </div>
+              <div class="icon_with_text_block">
+                <div class="icon_blk_img">
+                  {% if block.settings.Four_images_with_text_img_three != blank %}
+                  {{ block.settings.Four_images_with_text_img_three | image_url: width: 500 | image_tag: class: 'icon_img' }}
+                  {% else %}
+                  {{ 'collection-3' | placeholder_svg_tag }}
+                  {% endif %}
+                </div>
+                <div class="icon_blk_text">{{ block.settings.Four_images_with_text_text_three }}</div>
+              </div>
+              <div class="icon_with_text_block">
+                <div class="icon_blk_img">
+                  {% if block.settings.Four_images_with_text_img_four != blank %}
+                  {{ block.settings.Four_images_with_text_img_four | image_url: width: 500 | image_tag: class: 'icon_img' }}
+                  {% else %}
+                  {{ 'collection-3' | placeholder_svg_tag }}
+                  {% endif %}
+                </div>
+                <div class="icon_blk_text">{{ block.settings.Four_images_with_text_text_four }}</div>
+              </div>
+            </div>
             {% when 'ctm_icon_with_text' %}
               <style>
                 .icon_with_text_wrapper {
@@ -554,6 +626,48 @@
             
                 calculateDeliveryDates();
               </script>
+            {% when 'Icon_text' %}
+              <style>
+                .icon-text-block {
+                  margin-bottom: 24px;
+                }
+                .icon-text-inner {
+                  display: flex;
+                  align-items: center;
+                  padding: 12px 8px;
+                  gap: 10px;
+                  background: #FFFBF0;
+                }
+              
+                .icon-text-image .icon_img {
+                  width: 24px;
+                  height: 24px;
+                }
+              
+                .icon-text-text p {
+                  font-size: 14px;
+                  margin: unset;
+                  line-height: 18px;
+                }
+              </style>
+              <div class="icon-text-block">
+                <div class="icon-text-inner">
+                  <div class="icon-text-image">
+                    {% if block.settings.icon_text_image != blank %}
+                      {{ block.settings.icon_text_image | image_url: width: 24 | image_tag: class: 'icon_img' }}
+                    {% else %}
+                      {{ 'collection-2' | placeholder_svg_tag }}
+                    {% endif %}
+                  </div>
+                  <div class="icon-text-text">
+                    {{ block.settings.icon_text_text }}
+                  </div>
+                </div>
+              </div>
+            {% when 'App_blocks' %}
+              {% render block %}
+            {% when '@app' %}
+              {% render block %}
             {% when 'title' %}
               {% if context == 'product' %}
                 <h1 class="product_name">
@@ -893,7 +1007,11 @@
                       {{ block.settings.collapsible_tab_text }}
                     </div>
                   {% endif %}
-
+                  {% if block.settings.collapsible_tab_image != blank %}
+                    <div class="collapsible-tab__image">
+                      {{ block.settings.collapsible_tab_image | image_url: width: 255 | image_tag: class: 'collapsible-tab__image_tag' }}
+                    </div>
+                  {% endif %}
                   {% if block.settings.collapsible_tab_text_two != blank %}
                     <div class="collapsible-tab__text_two">
                       {{ block.settings.collapsible_tab_text_two }}

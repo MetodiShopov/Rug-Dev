@@ -6686,13 +6686,21 @@ ul.tabs-content ul {
   display: none;
 }
 
+.collapsible-tab__heading span {
+  font-size: 16px;
+  font-weight: 700;
+}
+
 .collapsible-tab__text {
   margin-bottom: 1rem;
   word-break: break-word;
 }
 
-.collapsible-tab__text p {
+.collapsible-tab__text p,
+.collapsible-tab__text_two p {
   margin-top: 0;
+  font-size: 14px;
+  line-height: 18px;
 }
 .collapsible-tab__text p:last-child {
   margin-bottom: 0;
