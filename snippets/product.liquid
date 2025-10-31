@@ -191,51 +191,52 @@
     margin-left: auto;
 
   }
-.logo-scroller-wrapper {
-  overflow: hidden;
-  width: 100%;
-  padding: 1rem 0;
-}
 
-.logo-track {
-  display: flex;
-  gap: 1.5rem;
-  animation: scroll-left linear infinite;
-  animation-duration: var(--scroll-speed);
-  width: max-content;
-  padding-left: 10%;
-}
+  .logo-scroller-wrapper {
+    overflow: hidden;
+    width: 100%;
+    padding: 1rem 0;
+  }
 
-.logo-item {
-  flex: 0 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+  .logo-track {
+    display: flex;
+    gap: 1.5rem;
+    animation: scroll-left linear infinite;
+    animation-duration: var(--scroll-speed);
+    width: max-content;
+    padding-left: 10%;
+  }
 
-.logo-item img {
-  height: 60px;
-  max-width: 150px;
-  object-fit: contain;
-  filter: grayscale(0%);
-  transition: filter 0.2s ease;
-}
+  .logo-item {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 
-.logo-item img:hover {
-  filter: grayscale(0%);
-}
-  @media (max-width: 768px) {
   .logo-item img {
     height: 60px;
-    max-width: 120px;
+    max-width: 150px;
+    object-fit: contain;
+    filter: grayscale(0%);
+    transition: filter 0.2s ease;
+  }
+
+  .logo-item img:hover {
     filter: grayscale(0%);
   }
-}
+  @media (max-width: 768px) {
+    .logo-item img {
+      height: 60px;
+      max-width: 120px;
+      filter: grayscale(0%);
+    }
+  }
 
-@keyframes scroll-left {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
-}
+  @keyframes scroll-left {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
   .feature-icon-block {
   width: 100%;
   max-width: 240px;
@@ -272,12 +273,37 @@
 .feature-icon-link:hover {
   text-decoration: none;
 }
-  .feature-icon-grid {
+
+.feature-icon-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: 1.5rem;
   justify-content: center;
 }
+
+{% comment %} RUG02 START {% endcomment %}
+.product__details .product-block--title .product_name {
+  color: #000;
+  font-weight: 700;
+  line-height: normal;
+  margin: unset;
+  padding: unset;
+}
+
+.product__details .product-block--price .money {
+  font-size: 24px;
+  line-height: normal;
+}
+.product__details .product-block--price .freeShipping {
+  display: none;
+}
+.shopify-product-form .swatch_options .option_title,
+.shopify-product-form .swatch_options .option_title * {
+  font-size: 14px;
+  font-weight: 700;
+  line-height: normal;
+}
+{% comment %} RUG02 END {% endcomment %}
 </style>
 {% if product != blank and context == 'product' %}
   {% render 'product__structured-data', product: product %}
@@ -865,6 +891,12 @@
                   {% if block.settings.collapsible_tab_text != blank %}
                     <div class="collapsible-tab__text">
                       {{ block.settings.collapsible_tab_text }}
+                    </div>
+                  {% endif %}
+
+                  {% if block.settings.collapsible_tab_text_two != blank %}
+                    <div class="collapsible-tab__text_two">
+                      {{ block.settings.collapsible_tab_text_two }}
                     </div>
                   {% endif %}
                 </details>
