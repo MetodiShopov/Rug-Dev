@@ -1,10 +1,6 @@
 <!doctype html>
 <html class="no-js no-touch" lang="{{ request.locale.iso_code }}">
   <head>
-<!-- Start of Shoplift scripts -->
-{% render 'shoplift' %}
-<!-- End of Shoplift scripts -->
-
     <script>
       window.Store = window.Store || {};
       window.Store.id = {{ shop.id }};
@@ -178,14 +174,6 @@
 
     {{ content_for_header }}
     
-        {% comment %} Microsoft Clarity {% endcomment %}
-    <script type="text/javascript">
-        (function(c,l,a,r,i,t,y){
-            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-        })(window, document, "clarity", "script", "ntkhwmdgdm");
-    </script>
 
   {% comment %} Google Tag Manager {% endcomment %}
   <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -239,35 +227,6 @@
     </script>
 
     {% comment %} Chatra {% endcomment %}
-
-
-  {% comment %} Mouseflow 
-  <script type="text/javascript">
-    window._mfq = window._mfq || [];
-    (function() {
-    var mf = document.createElement("script");
-    mf.type = "text/javascript"; mf.defer = true;
-    mf.src = "//cdn.mouseflow.com/projects/cdcbfd25-6852-4005-b1cf-1cf60f42140b.js";
-    document.getElementsByTagName("head")[0].appendChild(mf);
-    })();
-  </script>
-    {% endcomment %}
-  
-  {% comment %} QuadPay Widget {% endcomment %}
-  <script>
-    var QuadPayShopifyOptions = {
-      productOptions: {
-        callback: "variantDetectByUrl",
-        widget: {
-          logoSize: "90%",
-          alignment: "none"
-        },
-        container: {
-          style: "margin-top: 7px;"
-        }
-      }
-    }
-  </script>
   </head>
 
   {% if template contains 'index' %}
@@ -401,74 +360,6 @@
     {%- if request.design_mode -%}
       <script src="{{ 'themeEditorSections.js' | asset_url }}" defer></script>
     {%- endif -%}
-
-    <script>
-      function myInit() {
-        StampedFn.init({ apiKey: '4c46487d-6c45-4443-be06-2a04a0c8bdcf', sId: '335276' });
-      }
-    </script>
-    <script async onload="myInit()" type="text/javascript" src="https://cdn1.stamped.io/files/widget.min.js"></script>
-
-    <style>
-          .stamped-summary-actions-newquestion, .stamped-summary-actions-newreview {
-              display: none;
-          }
-    </style>
-
-    {% comment %} <!-- Begin Shopify-Afterpay JavaScript Snippet (v1.1.6) -->
-    {% if cart.currency.iso_code == shop.currency %}
-      <script type="text/javascript">
-        // Overrides:
-        // var afterpay_min = 1.00;       // As per your Afterpay contract.
-        // var afterpay_max = 2000.00;    // As per your Afterpay contract.
-        // var afterpay_msg_size = 'sm';  // Can be 'xs', 'sm', 'md' or 'lg'.
-        // var afterpay_bold_amount = true;
-        var afterpay_logo_theme = 'black';  // Can be 'colour', 'black' or 'white'.
-        // var afterpay_modal_open_icon = true;
-        // var afterpay_hide_upper_limit = false;
-        // var afterpay_hide_lower_limit = true;
-        // var afterpay_show_if_outside_limits = true;
-        // var afterpay_cbt_enabled = false;
-        // var afterpay_apr_loans_available = false;
-
-        // var afterpay_product_integration_enabled = true;
-        var afterpay_product_selector = ' div.flex.wrap.fl_between.al_center.price-review.mt__15.pb__10.mb__20.price_stock';
-          var afterpay_product_css = {'font-weight': 'bold', 'margin': '0'};  // The CSS styling of the Afterpay assets on the Product pages.
-        var afterpay_variable_price_fallback = true;
-        var afterpay_variable_price_fallback_selector = '#price_ppr';
-        var afterpay_variable_price_fallback_method = 'interval';  // Can be 'mutation' or 'interval'.
-
-        var afterpay_cart_static_selector = '#shopify-section-cart-template > form > div.cart__footer.mt__60.mb__80 > div > div > div.total.row.in_flex.fl_between.al_center.cd.fs__18.tu';
-        // var afterpay_variable_subtotal_fallback = false;
-        // var afterpay_variable_subtotal_fallback_selector = '';
-        // var afterpay_variable_subtotal_fallback_method = 'mutation'; // Can be 'mutation' or 'interval'.
-        // var afterpay_cart_dynamic_integration_enabled = false;
-
-        // var afterpay_footer_logo_enabled = true;
-        // var afterpay_footer_logo_format = 'icon';  // Can be 'icon', 'stacked' or 'logo'.
-        // var afterpay_footer_logo_theme = 'colour'; // Can be 'colour', 'black' or 'white'.
-        // var afterpay_footer_logo_background = 'border';  // Can be 'border' or 'transparent'.
-        // var afterpay_footer_logo_container = 'footer ul.payment-icons';
-        // var afterpay_footer_logo_template = '<li class="payment-icon"><object data="{logo_path}" type="image/svg+xml"></object></li>';
-
-        // Non-editable fields:
-        var afterpay_js_language = {{ localization.language.iso_code | slice: 0, 2 | json }};
-        var afterpay_js_country = {{ localization.country.iso_code | json }};
-        var afterpay_shop_currency = {{ shop.currency | json }};
-        var afterpay_cart_currency = {{ cart.currency.iso_code | json }};
-        var afterpay_shop_money_format = {{ shop.money_format | json }};
-        var afterpay_shop_permanent_domain = {{ shop.permanent_domain | json }};
-        var afterpay_theme_name = {{ theme.name | json }};
-        var afterpay_product = {{ product | json }};
-        var afterpay_current_variant = {{ product.selected_or_first_available_variant | json }};
-        var afterpay_cart_total_price = {{ cart.total_price | json }};
-        var afterpay_js_snippet_version = '1.1.6';
-      </script>
-      <script type="text/javascript" src="https://static.afterpay.com/shopify-afterpay-javascript.js"></script>
-    {% else %}
-      <!-- Afterpay disabled: {{ cart.currency.iso_code }} != {{ shop.currency }} -->
-    {% endif %}
-    <!-- End Shopify-Afterpay JavaScript Snippet (v1.1.6) --> {% endcomment %}
 
     <script src="{{ 'interactable.js' | asset_url }}" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer></script>

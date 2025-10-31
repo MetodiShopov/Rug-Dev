@@ -81,16 +81,6 @@ assign locale_url = product.url | split:'/products/' | first -%}
   <div class="loox-rating loox-rating-hp " data-rating="{{ looxstats[0] }}" data-raters="{{ looxstats[1] }}" data-pattern='[count] Reviews'></div> 
   </a>-->
   {% endif %}
-<!-- Stamped - Begin Star Rating Badge -->
-<span 
-class="stamped-product-reviews-badge stamped-main-badge dat_summary1" 
-data-id="{{ product.id }}"
-data-product-sku="{{ product.handle }}" 
-data-product-type="{{product.type}}" 
-data-product-title="{{product.title}}" 
-style="display:block;">
-</span>
-<!-- Stamped - End Star Rating Badge -->
 
 
  <div class="flex wrap fl_between al_center price-review mt__15 pb__10 mb__20 price_stock">

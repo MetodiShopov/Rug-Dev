@@ -8,10 +8,6 @@
 <!doctype html>
 <html class="no-js no-touch" lang="{{ request.locale.iso_code }}">
   <head>
-<!-- Start of Shoplift scripts -->
-{% render 'shoplift' %}
-<!-- End of Shoplift scripts -->
-
     <script>
       window.Store = window.Store || {};
       window.Store.id = {{ shop.id }};
@@ -211,15 +207,6 @@
 
     {% comment %} Chatra {% endcomment %}
 
-    {% comment %} Microsoft Clarity {% endcomment %}
-    <script type="text/javascript">
-        (function(c,l,a,r,i,t,y){
-            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-        })(window, document, "clarity", "script", "ntkhwmdgdm");
-    </script>
-
   {% comment %} Google Tag Manager {% endcomment %}
   <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -232,35 +219,6 @@
     j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
     })(window,document,'script','dataLayer','GTM-M7MNG6DK');</script>
-
-  
-  {% comment %} Mouseflow 
-  <script type="text/javascript">
-    window._mfq = window._mfq || [];
-    (function() {
-    var mf = document.createElement("script");
-    mf.type = "text/javascript"; mf.defer = true;
-    mf.src = "//cdn.mouseflow.com/projects/cdcbfd25-6852-4005-b1cf-1cf60f42140b.js";
-    document.getElementsByTagName("head")[0].appendChild(mf);
-    })();
-  </script>
-    {% endcomment %}
-  
-  {% comment %} QuadPay Widget {% endcomment %}
-  <script>
-    var QuadPayShopifyOptions = {
-      productOptions: {
-        callback: "variantDetectByUrl",
-        widget: {
-          logoSize: "90%",
-          alignment: "none"
-        },
-        container: {
-          style: "margin-top: 7px;"
-        }
-      }
-    }
-  </script>
   </head>
 
   {% if template contains 'index' %}
