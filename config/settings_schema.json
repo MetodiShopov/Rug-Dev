@@ -11,22 +11,22 @@
     "name": "t:settings_schema.age_gate.name",
     "settings": [
       {
-  "type": "checkbox",
-  "id": "show_button",
-  "label": "Show FAQ button",
-  "default": true
-},
-{
-  "type": "url",
-  "id": "button_link",
-  "label": "Button link"
-},
-{
-  "type": "text",
-  "id": "button_label",
-  "label": "Button text",
-  "default": "Still have questions? Contact us"
-},
+        "type": "checkbox",
+        "id": "show_button",
+        "label": "Show FAQ button",
+        "default": true
+      },
+      {
+        "type": "url",
+        "id": "button_link",
+        "label": "Button link"
+      },
+      {
+        "type": "text",
+        "id": "button_label",
+        "label": "Button text",
+        "default": "Still have questions? Contact us"
+      },
       {
         "type": "checkbox",
         "id": "enable_age_gate_site_wide",
