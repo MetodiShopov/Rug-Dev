@@ -10422,6 +10422,13 @@ div#disqus_thread li {
     margin-bottom: 1rem;
   }
 
+.swatch .option_title {
+  margin: 24px 0 8px;
+}
+.option_title.opt_title_size {
+  margin: unset;
+}
+
 @media only screen and (max-width: 798px) {
     .recipient-form-true.quantity-box-false .swatch_options {
       margin-bottom: 0;
@@ -10430,7 +10437,6 @@ div#disqus_thread li {
 
 .swatch .option_title {
     width: 100%;
-    margin: 0.5em 0;
   }
 
 /* Hide radio buttons */

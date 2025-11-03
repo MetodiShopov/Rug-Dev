@@ -165,6 +165,21 @@ span.loox-rating-label::after {
   background-color: #ffc036;
   color: #000000;
 }
+.swatch_options .swatch:first-of-type input:checked+.swatch-element {
+  background-color: unset;
+}
+.swatch_options .swatch:first-of-type label {
+  min-width: 120px;
+}
+.swatch_options .swatch:first-of-type input:checked+.swatch-element svg {
+  fill: #ffc036;
+}
+
+@media screen and (max-width: 768px) {
+  .swatch_options .swatch:first-of-type label {
+    min-width: 105px;
+  }
+}
 
 button#zakeke-product-button {
   background-color: transparent;
@@ -249,23 +264,27 @@ button#zakeke-product-button {
 }
 
 .product-main .product-block--price .price .money {
-  font-size: 1.76rem;
+  font-size: 24px;
   font-weight: 700;
 }
 
 .product-main .swatch_options .option_title {
     font-size: 0.9rem;
-    text-transform: uppercase;
     display: flex;
     letter-spacing: 1px;
     font-weight: 500;
 }
 
 .product-main .swatch label {
-  padding: 3px 13px;
-  font-size: 12px;
+  padding: 8px 16px;
+  font-size: 14px;
   font-weight: 600;
-  text-transform: uppercase;
+  text-transform: unset;
+  min-width: 88px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
 
 .ctm_prd_main_thum {
@@ -285,17 +304,16 @@ button#zakeke-product-button {
 }
 
 .prd_order_del_box {
-  display: grid;
-  grid-template-columns: 10% 1fr;
-  grid-template-rows: auto;
-  justify-items: left;
+  display: flex;
   align-items: center;
+  gap: 8px;
+  width: 100%;
+  border-radius: 4px;
+  background: #F1F1F1;
+  padding: 8px 12px;
 }
 
 .order-info-box {
-  background-color: #f5f5f5;
-  padding: 8px 18px;
-  border: 1px dotted #000;
   margin-block: 1.5rem;
 }
 
@@ -317,6 +335,12 @@ button#zakeke-product-button {
   animation-duration: 1s;
   animation-iteration-count: infinite;
   animation-direction: alternate;
+  width: 24px;
+  height: 24px;
+}
+
+.cst_truct_icon img {
+  max-width: unset;
 }
 
 .product_gallery #main_thumb_message {

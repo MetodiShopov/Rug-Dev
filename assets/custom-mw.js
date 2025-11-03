@@ -109,8 +109,8 @@ if (document.body.classList.contains("product")) {
 	function updateStepTitle() {
     const stepNumber = window.location.href.includes("custom-rug-carpet") ? 2 : 1;
     document.querySelector('[data-option-size-title]').innerHTML = 
-        `<div class="option_title opt_title_size">Step ${stepNumber}. Choose Your Size</div>  
-         <button class="open-size-guide-btn">Size Guide</button>`;
+        `<div class="option_title opt_title_size">Select size:</div>`;  
+        //  <button class="open-size-guide-btn">Size Guide</button>
 	}
 
 	function classAddToComment() {

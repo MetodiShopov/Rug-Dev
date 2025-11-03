@@ -288,11 +288,8 @@
   line-height: normal;
   margin: unset;
   padding: unset;
-}
-
-.product__details .product-block--price .money {
-  font-size: 24px;
-  line-height: normal;
+  text-transform: none;
+  margin-bottom: 16px;
 }
 .product__details .product-block--price .freeShipping {
   display: none;
@@ -495,6 +492,12 @@
                 width: 32px;
                 height: 32px;
               }
+
+              @media screen and (max-width: 768px) {
+                .icon_with_text_wrapper {
+                  gap: 14px;
+                }
+              }
             </style>
             <div class="icon_with_text_wrapper">
               <div class="icon_with_text_block">
@@ -642,12 +645,13 @@
                 .icon-text-image .icon_img {
                   width: 24px;
                   height: 24px;
+                  max-width: unset;
                 }
               
                 .icon-text-text p {
                   font-size: 14px;
                   margin: unset;
-                  line-height: 18px;
+                  line-height: 1.4;
                 }
               </style>
               <div class="icon-text-block">
