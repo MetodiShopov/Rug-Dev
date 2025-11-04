@@ -28,9 +28,11 @@
             "display_savings": true
           }
         },
-        "rating_nWVemG": {
-          "type": "rating",
-          "settings": {}
+        "okendo_star_rating_ydA4LC": {
+          "type": "shopify:\/\/apps\/okendo\/blocks\/star-rating\/bb689e69-ea70-4661-8fb7-ad24a2e23c29",
+          "settings": {
+            "product": "{{product}}"
+          }
         },
         "afterpay_on_site_messaging_payments_messaging_VExiYb": {
           "type": "shopify:\/\/apps\/afterpay-on-site-messaging\/blocks\/payments-messaging\/f45a5524-d177-4475-bf59-281efd2215a8",
@@ -177,7 +179,7 @@
         "title",
         "zepto_product_personalizer_product_personalizer_page_dQJwma",
         "price",
-        "rating_nWVemG",
+        "okendo_star_rating_ydA4LC",
         "afterpay_on_site_messaging_payments_messaging_VExiYb",
         "form",
         "custom_image_znAtUH",
@@ -196,7 +198,7 @@
       "custom_css": [
         ".feature-divider {display: none !important;}",
         ".loox-rating .loox-rating-content {gap: 6px; margin-bottom: 12px;}",
-        "#shopify-block-AdDZ5WVl0Wm4rRDJPa__okendo_star_rating_eceRFY-1 {display: none;}"
+        "#shopify-block-AU3JNTkNuSHdrdmRpR__okendo_star_rating_ydA4LC-1 {display: none;}"
       ],
       "settings": {
         "product_breadcrumb": false,
