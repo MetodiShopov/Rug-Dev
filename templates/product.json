@@ -28,6 +28,10 @@
             "display_savings": true
           }
         },
+        "rating_nWVemG": {
+          "type": "rating",
+          "settings": {}
+        },
         "afterpay_on_site_messaging_payments_messaging_VExiYb": {
           "type": "shopify:\/\/apps\/afterpay-on-site-messaging\/blocks\/payments-messaging\/f45a5524-d177-4475-bf59-281efd2215a8",
           "disabled": true,
@@ -71,6 +75,17 @@
         "description": {
           "type": "description",
           "settings": {}
+        },
+        "blinking_icon_text_zKgJqG": {
+          "type": "blinking_icon_text",
+          "settings": {}
+        },
+        "icon_text_rzFNXm": {
+          "type": "Icon_text",
+          "settings": {
+            "icon_text_image": "shopify:\/\/shop_images\/Headset_mic.png",
+            "icon_text_text": "<p>Questions or special requests? Our California concierge team is ready to help: <strong>(949) 478-4886.<\/strong><\/p>"
+          }
         },
         "collapsible_tab_qNTFGV": {
           "type": "collapsible-tab",
@@ -126,10 +141,6 @@
             "collapsible_tab_text_two": ""
           }
         },
-        "blinking_icon_text_zKgJqG": {
-          "type": "blinking_icon_text",
-          "settings": {}
-        },
         "order_LYi88b": {
           "type": "order",
           "disabled": true,
@@ -148,15 +159,17 @@
             "min": "minutes"
           }
         },
-        "ctm_icon_with_text_VDDAnc": {
-          "type": "ctm_icon_with_text",
+        "four_images_with_text_GVJwGC": {
+          "type": "Four_images_with_text",
           "settings": {
-            "icon_text_img_1": "shopify:\/\/shop_images\/image_6.png",
-            "icon_text_text_1": "<p>Hand Tailored in USA<\/p>",
-            "icon_text_img_2": "shopify:\/\/shop_images\/image_11.png",
-            "icon_text_text_2": "<p>Free Shipping<\/p>",
-            "icon_text_img_3": "shopify:\/\/shop_images\/quality-medal-svgrepo-com.svg",
-            "icon_text_text_3": "<p>100% Customer Satisfaction<\/p>"
+            "Four_images_with_text_img_one": "shopify:\/\/shop_images\/Truck.jpg",
+            "Four_images_with_text_text_one": "<p>Fast and Free Delivery<\/p>",
+            "Four_images_with_text_img_two": "shopify:\/\/shop_images\/Brush.jpg",
+            "Four_images_with_text_text_two": "<p>Durable & Easy-Clean<\/p>",
+            "Four_images_with_text_img_three": "shopify:\/\/shop_images\/Star.jpg",
+            "Four_images_with_text_text_three": "<p>4.55★ User Satisfaction<\/p>",
+            "Four_images_with_text_img_four": "shopify:\/\/shop_images\/Bucket.jpg",
+            "Four_images_with_text_text_four": "<p>Concierge Team<\/p>"
           }
         }
       },
@@ -164,19 +177,21 @@
         "title",
         "zepto_product_personalizer_product_personalizer_page_dQJwma",
         "price",
+        "rating_nWVemG",
         "afterpay_on_site_messaging_payments_messaging_VExiYb",
         "form",
         "custom_image_znAtUH",
         "description",
+        "blinking_icon_text_zKgJqG",
+        "icon_text_rzFNXm",
         "collapsible_tab_qNTFGV",
         "collapsible_tab_JztnGb",
         "6b9a8d0f-bb3d-4844-9fbe-529b6cdaae2c",
         "collapsible_tab_UF4WJG",
         "collapsible_tab_ijFrJi",
         "collapsible_tab_kE8Q4j",
-        "blinking_icon_text_zKgJqG",
         "order_LYi88b",
-        "ctm_icon_with_text_VDDAnc"
+        "four_images_with_text_GVJwGC"
       ],
       "custom_css": [
         ".feature-divider {display: none !important;}",
