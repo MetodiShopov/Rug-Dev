@@ -108,33 +108,52 @@ if (document.body.classList.contains("product")) {
 
 	function updateStepTitle() {
     const stepNumber = window.location.href.includes("custom-rug-carpet") ? 2 : 1;
-    document.querySelector('[data-option-size-title]').innerHTML = 
-        `<div class="option_title opt_title_size">Select size:</div>`;  
-        //  <button class="open-size-guide-btn">Size Guide</button>
+	const el = document.querySelector('[data-option-size-title]');
+	if (!el) return;
+	const desired = `<div class="option_title opt_title_size">Select size:</div>  
+		 <button class="open-size-guide-btn">Size Guide</button>`;
+	// only update if content changed to avoid continuous reflows
+	if (el.innerHTML.trim() !== desired.trim()) {
+		el.innerHTML = desired;
+	}
 	}
 
 	function classAddToComment() {
+		// run the update a few times while page elements are still rendering, then stop
+		let attempts = 0;
+		const maxAttempts = 50; // at 400ms this is ~20s max
 		const interval = setInterval(function () {
-				// document.querySelector('[data-option-size-title]').innerHTML = 
-				// 	`<div class="option_title opt_title_size">Step 2. Choose Your Size</div>   <button class="open-size-guide-btn">Size Guide</button>`;
+			attempts++;
+			const sizeTitleEl = document.querySelector('[data-option-size-title]');
+			if (sizeTitleEl) {
 				updateStepTitle();
-
-				document.querySelector('[data-option-size-title]').parentElement.classList.add('opt_title_size_parent');
-				if (window.location.href.includes("custom-rug-carpet")) {
-					document.querySelector('[data-option-size-title]').parentElement.classList.remove('opt_title_size_parent');
+				const parent = sizeTitleEl.parentElement;
+				if (parent && !parent.classList.contains('opt_title_size_parent')) {
+					parent.classList.add('opt_title_size_parent');
 				}
-
-				const CommentElem = document.querySelectorAll(".pplr-comments--requests");
-				if (CommentElem.length > 0) {
-					CommentElem.forEach((elem) => {
-						elem.querySelector("textarea").setAttribute("placeholder", "For design changes, you can mention here eg: background color...");
-					});
-					clearInterval(interval);
+				if (window.location.href.includes("custom-rug-carpet") && parent) {
+					parent.classList.remove('opt_title_size_parent');
 				}
+			}
 
-				if(document.querySelector(".pplr-c-button")) {
-						clearInterval(interval);
-				}
+			const CommentElem = document.querySelectorAll(".pplr-comments--requests");
+			if (CommentElem.length > 0) {
+				CommentElem.forEach((elem) => {
+					const ta = elem.querySelector("textarea");
+					if (ta) ta.setAttribute("placeholder", "For design changes, you can mention here eg: background color...");
+				});
+				clearInterval(interval);
+				return;
+			}
+
+			if (document.querySelector(".pplr-c-button")) {
+				clearInterval(interval);
+				return;
+			}
+
+			if (attempts >= maxAttempts) {
+				clearInterval(interval);
+			}
 		}, 400);
 	}
 
