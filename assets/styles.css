@@ -10433,6 +10433,11 @@ div#disqus_thread li {
     .recipient-form-true.quantity-box-false .swatch_options {
       margin-bottom: 0;
     }
+    
+    div.swatch_options > div:nth-child(2) > div.option_title > div {
+      margin: unset;
+      width: auto;
+    }
   }
 
 .swatch .option_title {
