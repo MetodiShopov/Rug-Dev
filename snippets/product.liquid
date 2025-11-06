@@ -625,7 +625,7 @@
                   deliveryEnd.setDate(deliveryEnd.getDate() + 4);
             
                   const options = { weekday: 'long', month: 'long', day: 'numeric' };
-                  document.getElementById('orderDate').innerHTML = `Order within the next 30 min to get it between <b>${deliveryStart.toLocaleDateString(undefined, options)}</b> and <b>${deliveryEnd.toLocaleDateString(undefined, options)}</b>`;
+                  document.getElementById('orderDate').innerHTML = `<strong>Free shipping on all rugs.</strong><br>Order within the next 30 min to get it between <b>${deliveryStart.toLocaleDateString(undefined, options)}</b> and <b>${deliveryEnd.toLocaleDateString(undefined, options)}</b>`;
                 }
             
                 calculateDeliveryDates();
