@@ -713,7 +713,7 @@ div.cart_content form{ margin: 10px 0 0;}
 
 
   .product-main .swatch_options {
-    padding: 20px 0;
+    padding: 0 0 20px;
     margin-left: -10px;
     margin-right: -10px;
     margin-bottom: 0;

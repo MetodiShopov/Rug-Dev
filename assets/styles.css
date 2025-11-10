@@ -7278,6 +7278,10 @@ a.continue:hover {
   .product_section.media-position--right {
     flex-direction: column;
   }
+
+  .product-main {
+    margin-top: 10px;
+  }
 }
 
 .vendor {
@@ -10492,11 +10496,21 @@ div#disqus_thread li {
   }
 
 .swatch .swatch-element {
-    position: relative;
+  position: relative;
+  margin: 0 0 8px;
+  transform: translateZ(0);
+  min-width: 40px;
+}
+
+@media screen and (max-width: 768px) {
+  .swatch .swatch-element {
     margin: 0px 8px 8px 0;
-    transform: translateZ(0);
-    min-width: 40px;
   }
+}
+
+.swatch.is-flex.is-flex-wrap {
+  justify-content: space-between;
+}
 
 .swatch .swatch-element .crossed-out {
     display: none;
