@@ -732,6 +732,7 @@ div.cart_content form{ margin: 10px 0 0;}
     width: calc(100% - 26px);
     justify-content: center;
     align-items: center;
+    column-gap: unset;
   }
 
   .product-main .swatch_options .swatch {

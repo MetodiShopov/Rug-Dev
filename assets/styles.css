@@ -10509,7 +10509,12 @@ div#disqus_thread li {
 }
 
 .swatch.is-flex.is-flex-wrap {
+  justify-content: start;
+  column-gap: 13px;
+}
+.swatch.is-flex.is-flex-wrap:first-of-type {
   justify-content: space-between;
+  gap: unset;
 }
 
 .swatch .swatch-element .crossed-out {
