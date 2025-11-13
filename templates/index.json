@@ -173,7 +173,7 @@
       "name": "Rugtomize Image Grid",
       "settings": {
         "columns_desktop": 14,
-        "gap": 16,
+        "gap": 12,
         "contain_images": true
       }
     },
