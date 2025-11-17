@@ -9518,7 +9518,7 @@ header.secondary_logo--true:not(.feature_image) img.primary_logo {
 }
 
 .top-bar__login-link {
-  display: flex;
+  display: none !important;
   gap: 5px;
   font-family: Helvetica, Arial, sans-serif;
   font-weight: 700;
