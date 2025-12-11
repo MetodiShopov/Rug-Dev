@@ -11389,6 +11389,7 @@ h4 span,
 #header .promo-banner a,
 #header .promo-banner a:visited a:hover {
   color: #ffffff;
+  text-decoration: underline;
 }
 
 .promo-banner {
@@ -17938,6 +17939,11 @@ footer .social_icons a:hover {
 }
 .age-gate__confirm_btn[disabled] {
   cursor: not-allowed;
+}
+
+/* RUG05 - Oke Rating underline */
+.oke-sr .oke-is-clickable .oke-sr-count {
+  text-decoration: underline;
 }
 
 /* #Font-Face

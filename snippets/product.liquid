@@ -113,8 +113,13 @@
     }
 
   @media screen and (max-width: 769px) {
-    .product-main .product-block--price,.ctm_prd_price_mobile{
-      display:none;
+    .product-main .product-block--price,
+    .product__details .product-block--price {
+      display: none;
+    }
+    .ctm_prd_price_mobile {
+      display: block;
+      text-align: left;
     }
     div#shopify-block-afterpay_on_site_messaging_payments_messaging_VExiYb {
         display: none;
@@ -136,7 +141,7 @@
       display: block;
     }
     .product-block--price {
-      display: none;
+      display: none !important;
     }
     .mobile_header_prd .product-block--price {
       display: block;
@@ -157,7 +162,7 @@
     }
 
   .mobile_header_prd .product-block--price {
-    display: flex !important;
+    display: flex;
     justify-content: space-between; 
     align-items: center;
     width:100%;
@@ -187,6 +192,11 @@
     width: 100%;
   }
 
+  @media screen and (min-width: 770px) {
+    .ctm_prd_price_mobile {
+      display: none;
+    }
+  }
 
   .freeShipping {
     margin-left: auto;
@@ -302,6 +312,14 @@
   line-height: normal;
 }
 {% comment %} RUG02 END {% endcomment %}
+
+/* RUG05 text area changes - START */
+.pplr-comments--adjustments--requests textarea.pplr_monogram,
+.pplr-comments--adjustments--requests .pplr_monogram {
+  opacity: 0.4 !important;
+  font-size: 12px !important;
+}
+/* RUG05 text area changes - END */
 </style>
 {% if product != blank and context == 'product' %}
   {% render 'product__structured-data', product: product %}
